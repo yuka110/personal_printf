@@ -6,18 +6,17 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/14 11:29:48 by yitoh         #+#    #+#                  #
-#    Updated: 2022/11/14 12:06:25 by yitoh         ########   odam.nl          #
+#    Updated: 2022/11/17 10:58:10 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-SRC = ft_printf_char.c 
+SRC = ft_printf.c ft_printf_char.c ft_printf_hex.c
 REGOBJ = $(SRC:.c=.o)
-BONUSSRC = ft_
+BONUSSRC = 
 BONUSOBJ = $(BONUSSRC:.c=.o)
 CFLAG = -Wall -Wextra -Werror #-fsanitize=address -g
 NAME = libftprintf.a
-LIBFT = libft.a
 
 ifdef WITH_BONUS
 OBJ = $(REGOBJ) $(BONUSOBJ)
@@ -25,7 +24,7 @@ else
 OBJ = $(REGOBJ)
 endif
 
-all: $(NAME) $(LIBFT)
+all: $(NAME) #$(LIBFT)
 
 $(NAME): $(OBJ)
 	@ar -crs $@ $^
@@ -33,8 +32,8 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@$(CC) -c $(CFLAG) $< -o $@
 
-$(LIBFT):
-	@$(MAKE) -C libft all
+# $(LIBFT):
+# 	@$(MAKE) -C libft all
 
 #$(BUILDDIR):
 #	@mkdir $(BUILDDIR)
