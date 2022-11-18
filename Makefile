@@ -6,50 +6,42 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/14 11:29:48 by yitoh         #+#    #+#                  #
-#    Updated: 2022/11/17 10:58:10 by yitoh         ########   odam.nl          #
+#    Updated: 2022/11/18 17:39:03 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-SRC = ft_printf.c ft_printf_char.c ft_printf_hex.c
-REGOBJ = $(SRC:.c=.o)
-BONUSSRC = 
-BONUSOBJ = $(BONUSSRC:.c=.o)
+SRC = ft_printf_char.c ft_printf_hex.c #ft_printf.c 
+OBJ = $(SRC:.c=.o)
 CFLAG = -Wall -Wextra -Werror #-fsanitize=address -g
 NAME = libftprintf.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-ifdef WITH_BONUS
-OBJ = $(REGOBJ) $(BONUSOBJ)
-else
-OBJ = $(REGOBJ)
-endif
+all: $(NAME)
 
-all: $(NAME) #$(LIBFT)
-
-$(NAME): $(OBJ)
-	@ar -crs $@ $^
+$(NAME): $(OBJ) $(LIBFT)
+	@ar -crs $@ $(OBJ) $(LIBFT)
 
 %.o: %.c
 	@$(CC) -c $(CFLAG) $< -o $@
 
-# $(LIBFT):
-# 	@$(MAKE) -C libft all
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR) all clean
 
 #$(BUILDDIR):
 #	@mkdir $(BUILDDIR)
 
 clean:
-	@rm -rf $(REGOBJ) $(BONUSOBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -f $(NAME) a.out
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-bonus: 
-	@$(MAKE) WITH_BONUS=1 all
-
 .PHONY: clean fclean all bonus test
 
-test: $(NAME) $(LIBFT)
-	@$(CC) $(CFLAG) *.c -o ./a.out
+test: $(NAME)
+	@$(CC) $(CFLAG) *.c libft/ft_strlen.c -o ./a.out

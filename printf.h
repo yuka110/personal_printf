@@ -6,23 +6,28 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/17 11:01:37 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/17 11:02:15 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/18 18:16:23 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 
+# include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include "./libft/libft.h"
 
 int	ft_printf(const char *format, ...);
-static int	whichtype(va_list ap, const char *format, int i, int count);
+int	whichtype(int i, int count, va_list ap, const char *format);
 
-static int	ft_printchar_fd(char c, int fd);
-static int	ft_strlen(const char *s);
-static int	ft_printstr_fd(char *s, int fd);
-static int	ft_printnbr_fd(int n, int fd);
-static int	ft_printvoid_fd(void *p, int fd);
-static int	ft_printhexup_fd(int num, int fd);
+int	ft_printchar_fd(char c, int fd);
+int	ft_printstr_fd(char *s, int fd);
+int	ft_printnbr_fd(int n, int fd);
+int	ft_printunsigned_fd(unsigned int u, int fd);
+int	ft_printvoid_fd(void *p, int fd);
+int	ft_printhexup_fd(unsigned int X, int fd);
+int	ft_printhexlow_fd(unsigned int x, int fd);
 
 #endif
