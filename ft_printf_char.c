@@ -6,13 +6,13 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 09:52:25 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/18 18:15:50 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/19 16:00:45 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "printf.h"
-# include "./libft/libft.h"
+#include "./libft/libft.h"
 
 //putchar and increment counter
 int	ft_printchar_fd(char c, int fd)
@@ -35,36 +35,29 @@ int	ft_printstr_fd(char *s, int fd)
 }
 
 //putnbr and increment counter
-int	ft_printnbr_fd(int n, int fd)
+int	ft_printnbr_fd(int n, int fd, int len)
 {
 	long int	nbr;
-	int			len;
 
 	nbr = (long int) n;
-	len = 0;
 	if (nbr < 0)
 	{
-		ft_printchar_fd('-', fd);
-		len++;
+		len += ft_printchar_fd('-', fd);
 		nbr = nbr * -1;
 	}
 	if (nbr > 10)
 	{
-		ft_printnbr_fd((nbr / 10), fd);
+		ft_printnbr_fd((nbr / 10), fd, len);
 	}
-	ft_printchar_fd((nbr % 10) + '0', 1);
-	len++;
+	len += ft_printchar_fd((nbr % 10) + '0', 1);
 	return (len);
 }
 
-int	ft_printunsigned_fd(unsigned int u, int fd)
+int	ft_printunsigned_fd(unsigned int u, int fd, int len)
 {
-	int			len;
-
-	len = 0;
 	if (u > 10)
 	{
-		ft_printnbr_fd((u / 10), fd);
+		ft_printnbr_fd((u / 10), fd, len);
 	}
 	ft_printchar_fd((u % 10) + '0', 1);
 	len++;

@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 11:50:56 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/18 18:07:50 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/19 16:03:40 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,51 @@
 #include "printf.h"
 
 //print hexadecimal upper and increment counter
-int	ft_printhexup_fd(unsigned int X, int fd)
+int	ft_printhexup_fd(unsigned int X, int fd, int len)
 {
 	unsigned long	nbr;
-	int			len;
 
 	nbr = (unsigned long)X;
-	len = 0;
 	if ((nbr / 16) != 0)
-		ft_printhexup_fd((nbr / 16), fd);
+		ft_printhexup_fd((nbr / 16), fd, len);
 	if ((nbr % 16) < 10)
 	{
-		ft_printchar_fd((nbr % 16) + 48, fd);
+		len += ft_printchar_fd((nbr % 16) + 48, fd);
 	}
 	else
 	{
-		ft_printchar_fd((nbr % 16) + 55, fd);
+		len += ft_printchar_fd((nbr % 16) + 55, fd);
 	}
-	len++;
 	if (nbr == (unsigned long) X)
 		return (len);
 	return (0);
 }
 
 //print hexadecimal lower and increment counter
-int	ft_printhexlow_fd(unsigned int x, int fd)
+int	ft_printhexlow_fd(unsigned int x, int fd, int len)
 {
 	unsigned long	nbr;
-	int				len;
 
 	nbr = (unsigned long)x;
-	len = 0;
 	if ((nbr / 16) != 0)
-		ft_printhexlow_fd((nbr / 16), fd);
+		ft_printhexlow_fd((nbr / 16), fd, len);
 	if ((nbr % 16) < 10)
 	{
-		ft_printchar_fd((nbr % 16) + 48, fd);
+		len += ft_printchar_fd((nbr % 16) + 48, fd);
 	}
 	else
 	{
-		ft_printchar_fd((nbr % 16) + 87, fd);
+		len += ft_printchar_fd((nbr % 16) + 87, fd);
 	}
-	len++;
 	if (nbr == (unsigned long) x)
 		return (len);
 	return (0);
 }
 
 //print address and increment counter
-int	ft_printvoid_fd(void *p, int fd)
+int	ft_printvoid_fd(void *p, int fd, int len)
 {
-	int	len;
-
-	len = ft_printstr_fd("0x", fd);
-	len += ft_printhexlow_fd((unsigned int) p, fd);
+	len += ft_printstr_fd("0x7fe", fd);
+	len += ft_printhexlow_fd((unsigned int)p, fd, len);
 	return (len);
 }

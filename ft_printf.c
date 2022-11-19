@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/14 11:30:32 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/18 18:16:03 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/19 16:04:41 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,29 @@
 #include "printf.h"
 
 //put counter inside each ft_put* function - so no need to include libft
-int	whichtype(int i, int count, va_list ap, const char *format)
+int	whichtype(int i, va_list ap, const char *format)
 {
+	int	addcount;
+
+	addcount = 0;
 	i += 1;
 	if (format[i] == 'c')
-		count += ft_printchar_fd(va_arg(ap, int), 1);
+		addcount = ft_printchar_fd(va_arg(ap, int), 1);
 	if (format[i] == 's')
-		count += ft_printstr_fd(va_arg(ap, char *), 1);
+		addcount = ft_printstr_fd(va_arg(ap, char *), 1);
 	if (format[i] == 'p')
-		count += ft_printvoid_fd(va_arg(ap, void *), 1);
+		addcount = ft_printvoid_fd(va_arg(ap, void *), 1, 0);
 	if (format[i] == 'd' || format[i] == 'i')
-		count += ft_printnbr_fd(va_arg(ap, int), 1);
+		addcount = ft_printnbr_fd(va_arg(ap, int), 1, 0);
 	if (format[i] == 'u')
-		count += ft_printunsigned_fd(va_arg(ap, unsigned int), 1);
+		addcount = ft_printunsigned_fd(va_arg(ap, unsigned int), 1, 0);
 	if (format[i] == 'x')
-		count += ft_printhexlow_fd(va_arg(ap, unsigned int), 1);
+		addcount = ft_printhexlow_fd(va_arg(ap, unsigned int), 1, 0);
 	if (format[i] == 'X')
-		count += ft_printhexup_fd(va_arg(ap, unsigned int), 1);
+		addcount = ft_printhexup_fd(va_arg(ap, unsigned int), 1, 0);
 	if (format[i] == '%')
-		count += ft_printchar_fd('%', 1);
-	return (count);
+		addcount = ft_printchar_fd('%', 1);
+	return (addcount);
 }
 
 /* The printf utility formats and prints its arguments, after the first, 
@@ -54,8 +57,12 @@ int	ft_printf(const char *format, ...)
 	while (i < len)
 	{
 		if (format[i] == '%')
-			whichtype(i, count, ap, format);
-		count += ft_printchar_fd(format[i], 1);
+		{
+			count += whichtype(i, ap, format);
+			i++;
+		}
+		else
+			count += ft_printchar_fd(format[i], 1);
 		i++;
 	}
 	va_end (ap);
