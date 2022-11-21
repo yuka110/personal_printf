@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 10:35:51 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/19 16:05:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 11:17:00 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 int main(void)
 {
 	char	try[50] = "12345abcde";
 	int	num = -75784629;
-	int	num2 = 857;
+	int	num2 = 2367;
 	int	*p = &num2;
 	int	original;
 	int mine;
@@ -76,4 +76,5 @@ int main(void)
 	mine = ft_printf("mine = %p\n", (void *)p);
 	original = printf("orig = %p\n", (void *)p);
 	printf("%d, %d\n", mine, original);
+
 }

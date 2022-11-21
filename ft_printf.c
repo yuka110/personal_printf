@@ -6,14 +6,14 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/14 11:30:32 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/19 16:04:41 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 11:10:18 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 //put counter inside each ft_put* function - so no need to include libft
 int	whichtype(int i, va_list ap, const char *format)

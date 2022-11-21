@@ -6,12 +6,12 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 09:52:25 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/19 16:00:45 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 11:15:58 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "./libft/libft.h"
 
 //putchar and increment counter
@@ -34,7 +34,7 @@ int	ft_printstr_fd(char *s, int fd)
 	return (len);
 }
 
-//putnbr and increment counter
+//putnbr and return counter
 int	ft_printnbr_fd(int n, int fd, int len)
 {
 	long int	nbr;
@@ -47,19 +47,17 @@ int	ft_printnbr_fd(int n, int fd, int len)
 	}
 	if (nbr > 10)
 	{
-		ft_printnbr_fd((nbr / 10), fd, len);
+		len = ft_printnbr_fd((nbr / 10), fd, len);
 	}
 	len += ft_printchar_fd((nbr % 10) + '0', 1);
 	return (len);
 }
 
+//put unsigned nbr and  return counter
 int	ft_printunsigned_fd(unsigned int u, int fd, int len)
 {
 	if (u > 10)
-	{
-		ft_printnbr_fd((u / 10), fd, len);
-	}
-	ft_printchar_fd((u % 10) + '0', 1);
-	len++;
+		len += ft_printnbr_fd((u / 10), fd, len);
+	len += ft_printchar_fd((u % 10) + '0', 1);
 	return (len);
 }

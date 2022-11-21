@@ -6,12 +6,12 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 11:50:56 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/19 16:03:40 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 11:28:13 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 //print hexadecimal upper and increment counter
 int	ft_printhexup_fd(unsigned int X, int fd, int len)
@@ -20,7 +20,7 @@ int	ft_printhexup_fd(unsigned int X, int fd, int len)
 
 	nbr = (unsigned long)X;
 	if ((nbr / 16) != 0)
-		ft_printhexup_fd((nbr / 16), fd, len);
+		len = ft_printhexup_fd((nbr / 16), fd, len);
 	if ((nbr % 16) < 10)
 	{
 		len += ft_printchar_fd((nbr % 16) + 48, fd);
@@ -41,7 +41,7 @@ int	ft_printhexlow_fd(unsigned int x, int fd, int len)
 
 	nbr = (unsigned long)x;
 	if ((nbr / 16) != 0)
-		ft_printhexlow_fd((nbr / 16), fd, len);
+		len = ft_printhexlow_fd((nbr / 16), fd, len);
 	if ((nbr % 16) < 10)
 	{
 		len += ft_printchar_fd((nbr % 16) + 48, fd);
@@ -58,7 +58,7 @@ int	ft_printhexlow_fd(unsigned int x, int fd, int len)
 //print address and increment counter
 int	ft_printvoid_fd(void *p, int fd, int len)
 {
-	len += ft_printstr_fd("0x7fe", fd);
-	len += ft_printhexlow_fd((unsigned int)p, fd, len);
+	len = ft_printstr_fd("0x7ffe", fd);
+	len = ft_printhexlow_fd((int)p, fd, len);
 	return (len);
 }
