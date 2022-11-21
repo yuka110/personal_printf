@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 11:50:56 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/21 11:28:13 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 16:08:16 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_printhexlow_fd(unsigned int x, int fd, int len)
 //print address and increment counter
 int	ft_printvoid_fd(void *p, int fd, int len)
 {
-	len = ft_printstr_fd("0x7ffe", fd);
+	len = ft_printstr_fd("0x", fd);
 	len = ft_printhexlow_fd((int)p, fd, len);
 	return (len);
 }

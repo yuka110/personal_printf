@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 09:52:25 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/21 11:15:58 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/21 16:07:42 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_printstr_fd(char *s, int fd)
 {
 	int	len;
 
-	len = (int) ft_strlen(s);
+	len = (int) ft_strlen(s); //segfault
 	write(fd, s, len);
 	return (len);
 }
