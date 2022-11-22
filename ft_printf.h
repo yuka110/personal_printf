@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/17 11:01:37 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/21 15:49:33 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/22 11:01:51 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_printstr_fd(char *s, int fd);
 int	ft_printnbr_fd(int n, int fd, int len);
 int	ft_printunsigned_fd(unsigned int u, int fd, int len);
 int	ft_printvoid_fd(void *p, int fd, int len);
-int	ft_printhexup_fd(unsigned int X, int fd, int len);
-int	ft_printhexlow_fd(unsigned int x, int fd, int len);
+int	ft_printhexup_fd(unsigned long X, int fd, int len);
+int	ft_printhexlow_fd(unsigned long x, int fd, int len);
 
 #endif

@@ -19,14 +19,14 @@
 int main(void)
 {
 	char	try[50] = "12345abcde";
-	int	num = -75784629;
+	int	num = 785785;
 	int	num2 = 2367;
-	int	*p = &num2;
+	void	*p = "";
 	int	original;
 	int mine;
 	
 	printf("s = %s\n", try);
-	mine = ft_printstr_fd(try, 1);
+	mine = ft_printstr_fd((char *)NULL, 1);
 	printf(", %d\n", mine);
 	printf("i = %i\n", num);
 	mine = ft_printnbr_fd(num, 1, 0);
@@ -37,8 +37,8 @@ int main(void)
 	printf("X = %X\n", num);
 	mine = ft_printhexup_fd(num, 1, 0);
 	printf(", %d\n", mine);
-	printf("x = %x\n", num2);
-	mine = ft_printhexlow_fd(num2, 1, 0);
+	printf("x = %x\n", num);
+	mine = ft_printhexlow_fd(num, 1, 0);
 	printf(", %d\n", mine);
 	printf("p = %p\n", p);
 	mine = ft_printvoid_fd((void *)p, 1, 0);

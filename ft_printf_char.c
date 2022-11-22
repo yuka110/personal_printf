@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/16 09:52:25 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/21 16:07:42 by yitoh         ########   odam.nl         */
+/*   Updated: 2022/11/22 10:14:50 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ int	ft_printstr_fd(char *s, int fd)
 {
 	int	len;
 
-	len = (int) ft_strlen(s); //segfault
+	if (!s)
+	{
+		write(fd, "(null)", 6);
+		return (6);
+	}
+	len = (int) ft_strlen(s);
 	write(fd, s, len);
 	return (len);
 }
@@ -45,7 +50,7 @@ int	ft_printnbr_fd(int n, int fd, int len)
 		len += ft_printchar_fd('-', fd);
 		nbr = nbr * -1;
 	}
-	if (nbr > 10)
+	if (nbr > 9)
 	{
 		len = ft_printnbr_fd((nbr / 10), fd, len);
 	}
@@ -56,7 +61,7 @@ int	ft_printnbr_fd(int n, int fd, int len)
 //put unsigned nbr and  return counter
 int	ft_printunsigned_fd(unsigned int u, int fd, int len)
 {
-	if (u > 10)
+	if (u > 9)
 		len += ft_printnbr_fd((u / 10), fd, len);
 	len += ft_printchar_fd((u % 10) + '0', 1);
 	return (len);
